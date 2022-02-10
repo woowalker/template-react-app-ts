@@ -1,0 +1,22 @@
+@pagination-select: pagination-select;
+
+.@{pagination-select} {
+  &__option {
+    position: relative;
+
+    &:hover {
+      padding-right: 18px;
+
+      .@{pagination-select}__copyable {
+        display: block;
+      }
+    }
+  }
+
+  &__copyable {
+    display : none;
+    position: absolute;
+    top     : 0;
+    right   : 0;
+  }
+}

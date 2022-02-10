@@ -1,0 +1,32 @@
+@import '../variables.less';
+
+@dialog-prefix-cls: ~'@{ant-prefix}-modal';
+
+.@{dialog-prefix-cls} {
+  top           : 20px;
+  padding-bottom: 0;
+
+  &-header {
+    padding: 12px 24px;
+  }
+
+  &-body {
+    padding   : 12px 24px;
+    max-height: ~'calc(100vh - 40px - 47px)';
+    overflow  : hidden auto;
+  }
+
+  &-close {
+    &-x {
+      width      : 46px;
+      height     : 46px;
+      line-height: 46px;
+    }
+  }
+
+  &.full-height {
+    .@{dialog-prefix-cls}-body {
+      height: ~'calc(100vh - 40px - 47px)';
+    }
+  }
+}

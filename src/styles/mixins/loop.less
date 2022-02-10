@@ -1,0 +1,9 @@
+.loop (@start: 0; @total: 10; @step: 1; @unit: px; @selector; @prefix: ~""; @property) when (@start <= @total) {
+  @n: @start;
+  .@{selector} {
+    &-@{prefix}@{n} {
+      @{property}: ~"@{n}@{unit}";
+    }
+  }
+  .loop(@start: @start + @step; @total: @total; @step: @step; @unit: @unit; @selector: @selector; @prefix: @prefix; @property: @property);
+}

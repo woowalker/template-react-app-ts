@@ -1,0 +1,110 @@
+@import '../../func.less';
+
+.login-page {
+  position        : relative;
+  width           : 100%;
+  height          : 100%;
+  display         : flex;
+  flex-direction  : column;
+  justify-content : center;
+  align-items     : flex-end;
+  background      : url('../../../assets/login/bg.jpg') center no-repeat;
+  background-color: #3f8eed;
+  background-size : cover;
+  overflow        : hidden;
+
+  &__login {
+    width          : 403px;
+    height         : 450px;
+    margin-right   : 200px;
+    padding        : 0px 58px 0 62px;
+    background     : url('../../../assets/login/login_box.png') center no-repeat;
+    background-size: contain;
+    display        : flex;
+    flex-direction : column;
+    justify-content: flex-start;
+    align-items    : center;
+
+    &-cn {
+      font-size  : 20px;
+      line-height: 1;
+      margin     : 32px 0;
+      color      : #1458BD;
+    }
+
+    &-box {
+      width   : 100%;
+      overflow: hidden;
+    }
+
+    &-form {
+      .ant-form-item {
+        margin-bottom: 16px;
+      }
+    }
+
+    &-tree {
+      .ant-select-selector {
+        height: 38px !important;
+      }
+
+      .ant-select-selection-item {
+        line-height: 36px !important;
+      }
+    }
+
+    &-input {
+      line-height: 2;
+
+      .ant-input {
+        padding-left: 6px !important;
+      }
+    }
+
+    &-pwd {
+      display        : flex;
+      flex-direction : row;
+      justify-content: space-between;
+      align-items    : center;
+      font-size      : 14px;
+      margin-bottom  : 18px;
+    }
+
+    &-verifyCode {
+      height: 28px;
+      cursor: pointer;
+    }
+
+    &-btn {
+      width     : 100%;
+      height    : 42px;
+      font-size : 16px;
+      margin-top: 18px;
+    }
+
+    &-error {
+      width        : 100%;
+      color        : #f04134;
+      font-size    : 12px;
+      padding-top  : 6px;
+      text-align   : center;
+      overflow     : hidden;
+      text-overflow: ellipsis;
+      white-space  : nowrap;
+    }
+  }
+
+  &__copyright {
+    position  : absolute;
+    left      : 0;
+    bottom    : 12px;
+    width     : 100%;
+    text-align: center;
+
+    p {
+      margin   : 0;
+      color    : #ffffff;
+      font-size: 12px;
+    }
+  }
+}

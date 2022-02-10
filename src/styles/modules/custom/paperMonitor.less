@@ -1,0 +1,127 @@
+@import '../../func.less';
+
+.paper-monitor {
+  position        : relative;
+  height          : 100%;
+  background-color: rgba(235, 236, 240, 1);
+
+  &__sider {
+    position        : absolute;
+    top             : 0;
+    left            : 0;
+    width           : 300px;
+    height          : 100%;
+    padding         : 12px;
+    background-color: #ffffff;
+    box-shadow      : 4px 4px 12px -2px #b2b9d3;
+  }
+
+  &__main {
+    height  : 100%;
+    padding : 12px 12px 12px 312px;
+    overflow: hidden auto;
+  }
+
+  &__machine {
+    padding      : 4px 12px;
+    border-radius: 8px;
+    overflow     : hidden;
+    box-shadow   : 4px 4px 12px -2px #b2b9d3;
+
+    &-item {
+      font-size      : 18px;
+      color          : #4264D4;
+      padding        : 12px 0;
+      display        : flex;
+      flex-direction : row;
+      justify-content: space-between;
+      align-items    : center;
+    }
+  }
+
+  &__switch {
+    margin-top      : 24px;
+    height          : 40px;
+    border-radius   : 20px;
+    background-color: rgba(235, 236, 240, 1);
+
+    &-item {
+      float        : left;
+      width        : 50%;
+      height       : 40px;
+      line-height  : 40px;
+      text-align   : center;
+      font-size    : 14px;
+      color        : #4264D4;
+      border-radius: 20px;
+      transition   : all .2s ease;
+      cursor       : pointer;
+
+      &.active {
+        color           : #ffffff;
+        background-color: #40a9ff;
+      }
+    }
+  }
+
+  &__control {
+
+    &-header {
+      display: flex;
+    }
+
+    &-zone {
+      flex            : 1;
+      padding         : 12px;
+      border-radius   : 8px;
+      background-color: #ffffff;
+      box-shadow      : 4px 4px 12px -2px #b2b9d3;
+      color           : #4264D4;
+
+      &.disabled {
+        color: #c6c6c6;
+      }
+
+      &:nth-child(2) {
+        margin: 0 6px 0 12px;
+      }
+
+      &:nth-child(3) {
+        margin: 0 12px 0 6px;
+      }
+
+      .collapse {
+        transform: rotateZ(180deg);
+      }
+    }
+
+    &-img {
+      height         : 60vh;
+      border-radius  : 8px;
+      margin         : 12px 0;
+      background-size: cover;
+    }
+
+    &-mv {
+      display        : flex;
+      flex-direction : row;
+      justify-content: space-between;
+      flex-wrap      : wrap;
+
+      &Zone {
+        width           : 24%;
+        padding         : 12px;
+        border-radius   : 8px;
+        background-color: #ffffff;
+        box-shadow      : 4px 4px 12px -2px #b2b9d3;
+        color           : #4264D4;
+      }
+    }
+  }
+
+  &__chart {
+    padding         : 12px;
+    border-radius   : 8px;
+    background-color: #ffffff;
+  }
+}

@@ -1,0 +1,20 @@
+@import '../variables.less';
+
+@table-prefix-cls :~'@{ant-prefix}-table';
+
+.@{table-prefix-cls} {
+  .operate-column {
+    display        : flex;
+    flex-direction : row;
+    justify-content: space-between;
+    align-items    : center;
+
+    &__btn {
+      cursor         : pointer;
+      display        : flex;
+      justify-content: center;
+      align-items    : center;
+      margin         : 0 4px;
+    }
+  }
+}
