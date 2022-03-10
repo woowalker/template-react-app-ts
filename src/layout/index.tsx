@@ -21,7 +21,6 @@ const Layout = (props: any) => {
           }).then((res: any) => {
             if (res) {
               commonStore.setLoginData(res)
-              $api['common/getAllEnum']()
             }
           })
         }
@@ -37,7 +36,7 @@ const Layout = (props: any) => {
           }
         })
     }
-  }, [location])
+  }, [location.pathname])
 
   return <Main>{props.children}</Main>
 }

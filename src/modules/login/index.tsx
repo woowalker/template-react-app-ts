@@ -84,7 +84,6 @@ const Login = (props: any) => {
     }).then((res: any) => {
       if (res) {
         commonStore.setLoginData(res, { username, password: MD5(password), orgId })
-        $api['common/getAllEnum']()
         // 载入第一项菜单页
         const firstMenu = appStore.activeMenu?.ID || getFirstValidTree(res.Menus[0])
         props.history.push(`/main/${firstMenu}`)
