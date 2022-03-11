@@ -9,7 +9,7 @@ const Layout = (props: any) => {
 
   const location = useLocation()
   useEffect(() => {
-    if (location.pathname !== $consts['ROUTE/LOGIN']) {
+    if (location.pathname !== $consts['ROUTE/ROOT'] && location.pathname !== $consts['ROUTE/LOGIN']) {
       const toLogin = (loginModel: any) => {
         const { ORG_ID } = commonStore.userinfo
         if (loginModel && !ORG_ID) {

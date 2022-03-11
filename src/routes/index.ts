@@ -6,7 +6,7 @@ const Main = React.lazy(() => import('src/modules/main'))
 
 const routes = [
   {
-    path: '/',
+    path: $consts['ROUTE/ROOT'],
     redirect: $consts['ROUTE/MAIN'],
     component: () => null
   },
