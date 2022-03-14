@@ -1,6 +1,6 @@
 import { makeObservable, observable, runInAction } from 'mobx'
 
-class AppStore {
+class HeaderStore {
   /**
    * 将初始化的步骤移动到 constructor 中，
    * 并且请务必初始化，否则 babel 插件 plugin-transform-flow-strip-types 编译失败，
@@ -25,6 +25,6 @@ class AppStore {
   }
 }
 
-const appStore = new AppStore()
+const headerStore = new HeaderStore()
 
-export default appStore
+export default headerStore

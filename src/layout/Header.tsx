@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 import { Dropdown, Menu } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import { EnergyIcon } from 'src/components'
-import { commonStore, appStore } from 'src/stores'
+import { commonStore, headerStore } from 'src/stores'
 import { $consts } from 'src/plugins'
 import 'src/styles/layout/header.less'
 
@@ -70,7 +70,7 @@ const Menus = () => {
     const { flatMenus } = commonStore
     const menu = flatMenus.find((item: any) => item.ID === evt.key)
     if (menu) {
-      appStore.setActiveMenu(menu)
+      headerStore.setActiveMenu(menu)
       navToMenu(menu)
     }
   }
@@ -93,7 +93,7 @@ const Menus = () => {
       const { menuId } = matchMain.params
       const menu = commonStore.flatMenus.find(item => item.ID === menuId) || (commonStore.flatMenus.length ? commonStore.flatMenus[0] : null)
       if (menu) {
-        !appStore.activeMenu && appStore.setActiveMenu(menu)
+        !headerStore.activeMenu && headerStore.setActiveMenu(menu)
         menu.ID !== menuId && navToMenu(menu)
       }
     }
@@ -130,7 +130,7 @@ const Menus = () => {
   return (
     <Menu
       onClick={handleClick}
-      selectedKeys={[appStore.activeMenu?.ID]}
+      selectedKeys={[headerStore.activeMenu?.ID]}
       mode='horizontal'
       className='header__left-menus'
     >

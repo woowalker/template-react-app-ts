@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react'
 import { matchPath } from 'react-router-dom'
-import { commonStore, appStore } from 'src/stores'
+import { commonStore, headerStore } from 'src/stores'
 import { FormPage } from 'src/components'
 import { Notice } from 'src/modules/main/components'
 import { $consts } from 'src/plugins'
@@ -17,19 +17,19 @@ const Main = (props: any) => {
       exact: true,
       strict: true
     })
-    if (matchMenu?.params?.menuId !== appStore.activeMenu?.ID) {
+    if (matchMenu?.params?.menuId !== headerStore.activeMenu?.ID) {
       const find = commonStore.flatMenus.find((item: any) => item.ID === matchMenu?.params?.menuId)
-      find && appStore.setActiveMenu(find)
+      find && headerStore.setActiveMenu(find)
     }
   }, [props.location.pathname])
 
-  if (!appStore.activeMenu?.Nav_MenuForm?.CODE) {
+  if (!headerStore.activeMenu?.Nav_MenuForm?.CODE) {
     return <FakePage />
   }
 
   return (
     <React.Fragment>
-      <FormPage formCode={appStore.activeMenu.Nav_MenuForm.CODE} />
+      <FormPage formCode={headerStore.activeMenu.Nav_MenuForm.CODE} />
       <Notice />
     </React.Fragment>
   )
