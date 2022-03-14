@@ -1,5 +1,7 @@
+import { reaction } from 'mobx'
 import { useState, useRef, useEffect } from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
+import { loadingStore } from 'src/stores'
 import { isEqual } from 'lodash'
 
 export function useLatest<T> (value: T) {
@@ -66,4 +68,14 @@ export function useDomSize (ref: any) {
   }, [])
 
   return domSize
+}
+
+export function useIsLoading (path: string, allPath: boolean = false) {
+  const [loading, setLoading] = useState(false)
+  useEffect(() => reaction(
+    () => allPath ? loadingStore.visible : loadingStore.isVisible[path],
+    (value) => setLoading(value)
+  ), [])
+
+  return loading
 }
