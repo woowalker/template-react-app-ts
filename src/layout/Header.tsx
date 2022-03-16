@@ -1,11 +1,10 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { useHistory, useLocation, matchPath } from 'react-router-dom'
-import { autorun } from 'mobx'
 import { observer } from 'mobx-react'
 import { Dropdown, Menu } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 import { EnergyIcon } from 'src/components'
-import { commonStore, headerStore } from 'src/stores'
+import { commonStore } from 'src/stores'
 import { $consts } from 'src/plugins'
 import 'src/styles/layout/header.less'
 
@@ -58,46 +57,14 @@ const Menus = () => {
   const history = useHistory()
   const location = useLocation()
 
-  /** 子菜单路由 */
-  const navToMenu = (menu: any) => {
-    history.push({
+  const handleClick = (evt: any) => {
+    const { flatMenus } = commonStore
+    const menu = flatMenus.find((item: any) => item.ID === evt.key)
+    menu && history.push({
       pathname: `/main/${menu.ID}`,
       search: location.search
     })
   }
-
-  const handleClick = (evt: any) => {
-    const { flatMenus } = commonStore
-    const menu = flatMenus.find((item: any) => item.ID === evt.key)
-    if (menu) {
-      headerStore.setActiveMenu(menu)
-      navToMenu(menu)
-    }
-  }
-
-  const matchMain = useMemo<any>(() => {
-    return matchPath(location.pathname, {
-      path: $consts['ROUTE/MAIN'],
-      exact: true,
-      strict: true
-    })
-  }, [location.pathname])
-
-  /**
-   * 页面刷新时候，更新菜单的选中状态
-   * useEffect 中使用 autorun 可参考：
-   * https://zh.mobx.js.org/react-integration.html#useeffect
-   */
-  useEffect(() => autorun(() => {
-    if (matchMain) {
-      const { menuId } = matchMain.params
-      const menu = commonStore.flatMenus.find(item => item.ID === menuId) || (commonStore.flatMenus.length ? commonStore.flatMenus[0] : null)
-      if (menu) {
-        !headerStore.activeMenu && headerStore.setActiveMenu(menu)
-        menu.ID !== menuId && navToMenu(menu)
-      }
-    }
-  }), [matchMain])
 
   const generateMenus = (menu: any, index: number) => {
     if (Array.isArray(menu.Children) && menu.Children.length) {
@@ -127,16 +94,22 @@ const Menus = () => {
     )
   }
 
+  const matchMain = useMemo<any>(() => {
+    return matchPath(location.pathname, {
+      path: $consts['ROUTE/MAIN'],
+      exact: true,
+      strict: true
+    })
+  }, [location.pathname])
+
   return (
     <Menu
       onClick={handleClick}
-      selectedKeys={[headerStore.activeMenu?.ID]}
+      selectedKeys={[matchMain?.params?.menuId]}
       mode='horizontal'
       className='header__left-menus'
     >
-      {
-        commonStore.menus.map((menu: any, index: number) => generateMenus(menu, index))
-      }
+      {commonStore.menus.map((menu: any, index: number) => generateMenus(menu, index))}
     </Menu>
   )
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { observer } from 'mobx-react'
 import { Button, Checkbox, Form, Input, TreeSelect } from 'antd'
 import { UserOutlined, SecurityScanOutlined, LockOutlined } from '@ant-design/icons'
-import { commonStore, headerStore, loadingStore } from 'src/stores'
+import { commonStore, loadingStore } from 'src/stores'
 import { $api, $consts } from 'src/plugins'
 import { uuid, getBaseURL, getFirstValidTree } from 'src/utils/tools'
 import docCookies from 'src/utils/docCookies'
@@ -85,8 +85,7 @@ const Login = (props: any) => {
       if (res) {
         commonStore.setLoginData(res, { username, password: MD5(password), orgId })
         // 载入第一项菜单页
-        const firstMenu = headerStore.activeMenu?.ID || getFirstValidTree(res.Menus[0])
-        props.history.push(`/main/${firstMenu}`)
+        props.history.push(`/main/${getFirstValidTree(res.Menus[0])}`)
       }
     })
   }
